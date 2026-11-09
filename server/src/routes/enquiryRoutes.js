@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { createEnquiry, listEnquiries, updateEnquiry, deleteEnquiry, enquiryStats } from '../controllers/enquiryController.js';
+import { protect } from '../middleware/auth.js';
+const router = Router();
+router.post('/', createEnquiry);
+router.get('/', protect, listEnquiries);
+router.get('/stats', protect, enquiryStats);
+router.patch('/:id', protect, updateEnquiry);
+router.delete('/:id', protect, deleteEnquiry);
+export default router;
